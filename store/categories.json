@@ -1,0 +1,29 @@
+[
+  {
+    "model": "products.category",
+    "pk": 4,
+    "fields": {
+      "name": "─шчрщэхЁёър  ьхсхы№",
+      "description": "",
+      "image": "category_images/design_furniture_cggzp1k.PNG"
+    }
+  },
+  {
+    "model": "products.category",
+    "pk": 5,
+    "fields": {
+      "name": "╬ётх∙хэшх",
+      "description": "",
+      "image": "category_images/lighting.PNG"
+    }
+  },
+  {
+    "model": "products.category",
+    "pk": 6,
+    "fields": {
+      "name": "╤тхЄшы№эшъш",
+      "description": "",
+      "image": "category_images/lamps.PNG"
+    }
+  }
+]
