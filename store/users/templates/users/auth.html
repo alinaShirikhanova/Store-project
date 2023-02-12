@@ -7,15 +7,15 @@
     <div class="card bg-light mb-3">
         <div class="card-header">Авторизация</div>
         <div class="card-body">
-            <form>
+            <form action="{% url 'auth' %}" method="post">
+                {% csrf_token %}
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Имя пользователя</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                        placeholder="Имя пользователя">
+                    <label for="{{ form.username.id_for_label }}" class="form-label">Имя пользователя</label>
+                    {{ form.username }}
                 </div>
                 <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Пароль</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Пароль">
+                    <label for="{{ form.password.id_for_label }}" class="form-label">Пароль</label>
+                    {{ form.password }}
                 </div>
                 <div class="auth">
                     <button type="submit" class="btn btn-dark">Авторизоваться</button>
@@ -23,7 +23,7 @@
                 </div>
             </form>
             <div class="card_footer">
-                <p>Нет аккаунта? <a href="">Регистрация</a></p>
+                <p>Нет аккаунта? <a href="{% url 'register' %}">Регистрация</a></p>
             </div>
         </div>
     </div>
