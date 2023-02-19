@@ -23,7 +23,7 @@ from products.views import index
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index'),
-    path('categories/', include('products.urls')),
+    path('products/', include('products.urls')),
     path('users/', include('users.urls')),
     # path('products/', catalog, name='catalog'),
 ]

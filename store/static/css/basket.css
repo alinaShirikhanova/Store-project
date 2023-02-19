@@ -1,0 +1,33 @@
+.card {
+    width: 600px;
+}
+
+.pagination {
+    color: black;
+}
+
+.container_image {
+    width: 200px;
+    height: 200px;
+    text-align: center;
+}
+
+.card {
+    text-align: center;
+}
+
+.image {
+    height: 200px;
+}
+
+.image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.col {
+    display: flex;
+    align-items: self-end;
+    justify-content: center;
+}

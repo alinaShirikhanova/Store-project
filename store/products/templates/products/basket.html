@@ -1,0 +1,36 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/basket.css' %}"> {% endblock %}
+
+{% block content %}
+
+<div class="container">
+   <h2>Корзина</h2>
+   <p class="products_amount">2 товара</p>
+   <div class="card mb-3" style="width: 800px;">
+       <div class="row g-0">
+           <div class="col-md-4">
+               <img src="{% static 'img/bg3.PNG' %}" alt="..." width="250px;">
+           </div>
+           <div class="col-md-8">
+               <div class="card-body">
+                   <h5 class="card-title">Светильник настенный</h5>
+                   <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                       additional
+                       content. This content is a little bit longer.</p>
+                   <p class="card-text">
+                   <nav aria-label="Page navigation example">
+                       <ul class="pagination">
+                           <li class="page-item"><a class="page-link" href="#">-</a></li>
+                           <li class="page-item"><a class="page-link" href="#">1</a></li>
+                           <li class="page-item"><a class="page-link" href="#">+</a></li>
+                       </ul>
+                   </nav>
+                   <small class="text-muted">Last updated 3 mins ago</small></p>
+               </div>
+           </div>
+       </div>
+   </div>
+</div>
+{% endblock %}
