@@ -10,7 +10,9 @@ def index(request):
 
 
 def basket(request):
-    return render(request, 'products/basket.html')
+    baskets = Basket.objects.filter(user=request.user)
+    context = {'baskets': baskets}
+    return render(request, 'products/basket.html', context)
 
 
 def add_product(request, product_id):
@@ -23,6 +25,24 @@ def add_product(request, product_id):
         basket = user_baskets.last()
         basket.quantity += 1
         basket.save()
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
+
+def remove_product(request, product_id):
+    product = Product.objects.get(id=product_id)
+    user_baskets = Basket.objects.filter(user=request.user, product=product)
+    basket = user_baskets.last()
+    if basket.quantity > 1:
+        basket.quantity -= 1
+        basket.save()
+    else:
+        basket.delete()
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
+
+def delete_basket(request, basket_id):
+    basket = Basket.objects.get(id=basket_id)
+    basket.delete()
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
 
