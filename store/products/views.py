@@ -1,12 +1,15 @@
 from django.core.paginator import Paginator
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from django.views.generic import TemplateView, ListView
 
 from products.models import Category, Product, Basket
 
 
-def index(request):
-    return render(request, 'products/index.html')
+
+
+# def index(request):
+#     return render(request, 'products/index.html')
 
 
 def basket(request):
@@ -46,17 +49,31 @@ def delete_basket(request, basket_id):
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
 
-def categories(request):
-    categories_list = Category.objects.all()
-    context = {'categories': categories_list}
-    return render(request, 'products/categories.html', context)
+class MainView(TemplateView):
+    template_name = 'products/index.html'
 
 
-def products(request, category_id, page=1):
-    category = Category.objects.get(id=category_id)
-    products_by_category = Product.objects.filter(category=category)
-    per_page = 1
-    paginator = Paginator(products_by_category, per_page)
-    products_pagintator = paginator.page(page)
-    context = {'category': category, 'products': products_pagintator}
-    return render(request, 'products/products.html', context)
+class CategoriesListView(ListView):
+    model = Category
+    template_name = 'products/categories.html'
+    context_object_name = 'categories'
+
+
+class ProductsListView(ListView):
+    model = Product
+    template_name = 'products/products.html'
+    context_object_name = 'products'
+    paginate_by = 1
+
+    def get_queryset(self):
+        queryset = super(ProductsListView, self).get_queryset()
+        category_id = self.kwargs.get('category_id')
+        category = Category.objects.get(id=category_id)
+        return queryset.filter(category=category)
+
+    # def get_context_data(self, *, object_list=None, **kwargs):
+    #     context = super(self).get_context_data()
+    #     context['category'] = Category.objects.get(id=ca)
+
+
+
